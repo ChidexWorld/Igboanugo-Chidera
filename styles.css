@@ -9,6 +9,7 @@
     border: none;
     outline: none;
     font-family: "Poppins", sans-serif;
+    overflow: hidden;
 }
 
 :root{
@@ -906,9 +907,5 @@ section.active{
 .success-message{
     font-size: 18px;
 }
-
-
-
-
 
 
