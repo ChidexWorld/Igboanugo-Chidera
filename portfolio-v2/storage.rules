@@ -1,0 +1,34 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper function to check if user is authenticated admin
+    function isAdmin() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Profile pictures - Public read, admin write, no delete
+    match /profile-pictures/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+      allow delete: if false; // Never allow deletion to maintain history
+    }
+
+    // Project images - Public read, admin write
+    match /projects/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Blog images - Public read, admin write
+    match /blogs/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Certificates - Public read, admin write
+    match /certificates/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

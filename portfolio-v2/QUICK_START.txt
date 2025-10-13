@@ -1,0 +1,111 @@
+PORTFOLIO V2 - QUICK START COMMANDS
+=====================================
+
+📁 NAVIGATE TO PROJECT:
+cd /home/chidex-world/Desktop/Chidex/Igboanugo-Chidera/portfolio-v2
+
+
+🔧 INSTALL DEPENDENCIES:
+npm install
+
+If you get errors, try:
+npm install --legacy-peer-deps
+
+
+🔥 FIREBASE SETUP:
+
+1. Go to: https://console.firebase.google.com/
+2. Create new project: "portfolio-v2"
+3. Enable: Authentication > Email/Password
+4. Create: Firestore Database
+5. Enable: Storage
+6. Get config from: Project Settings > Your apps
+7. Create .env file with your Firebase config
+
+
+📝 CREATE .ENV FILE:
+cp .env.example .env
+nano .env
+
+Add your Firebase config:
+VITE_FIREBASE_API_KEY=your_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_domain_here
+VITE_FIREBASE_PROJECT_ID=your_project_id_here
+VITE_FIREBASE_STORAGE_BUCKET=your_bucket_here
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id_here
+VITE_FIREBASE_APP_ID=your_app_id_here
+
+
+🚀 DEPLOY FIREBASE RULES:
+npm install -g firebase-tools
+firebase login
+firebase init
+firebase deploy --only firestore:rules,storage:rules
+
+
+👤 CREATE ADMIN USER:
+Go to Firebase Console > Authentication > Add User
+Email: your-email@example.com
+Password: YourSecurePassword123!
+
+
+▶️  RUN DEVELOPMENT SERVER:
+npm run dev
+
+Open: http://localhost:5173
+
+
+🔐 TEST LOGIN:
+Navigate to: http://localhost:5173/admin/login
+Login with your admin credentials
+
+
+📦 BUILD FOR PRODUCTION:
+npm run build
+
+
+🌐 DEPLOY TO FIREBASE HOSTING:
+firebase deploy --only hosting
+
+
+📚 DOCUMENTATION FILES:
+1. README.md - Project overview
+2. GETTING_STARTED.md - 5-step setup guide
+3. IMPLEMENTATION_GUIDE.md - Component templates
+4. PROJECT_STRUCTURE.md - Architecture
+5. PROJECT_SUMMARY.md - What's built, what's needed
+6. CHECKLIST.md - Implementation checklist
+
+
+⚡ QUICK REFERENCE:
+npm run dev      - Start dev server
+npm run build    - Build for production
+npm run preview  - Preview production build
+npm run lint     - Check code quality
+
+
+🎯 WHAT TO BUILD NEXT:
+1. src/components/admin/Sidebar.jsx (template provided)
+2. src/components/admin/ExperienceManager.jsx (template provided)
+3. src/components/public/Header.jsx (copy from V1)
+4. src/components/public/HomeSection.jsx (copy from V1)
+
+
+💡 TIPS:
+- Start with ONE admin manager component
+- Test thoroughly before moving to next
+- Copy your V1 styles section by section
+- Use templates from IMPLEMENTATION_GUIDE.md
+- Check CHECKLIST.md for progress tracking
+
+
+❓ NEED HELP?
+- Read GETTING_STARTED.md for detailed setup
+- Read IMPLEMENTATION_GUIDE.md for code examples
+- Check PROJECT_SUMMARY.md for overview
+- Firebase docs: https://firebase.google.com/docs
+
+
+🎊 YOU'RE READY TO BUILD!
+Everything is set up. Just follow the guides and start coding!
+

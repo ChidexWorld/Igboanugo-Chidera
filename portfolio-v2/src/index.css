@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: #1f242d;
+  --second-bg-color: #323946;
+  --main-color: #ff1493;
+  --white-color: #fff;
+  --disabled-color: #fff3;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--white-color);
+  background: var(--bg-color);
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 9%;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.3s;
+}
+
+header.active {
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+nav a {
+  font-size: 2rem;
+  color: var(--white-color);
+  font-weight: 500;
+  margin-left: 3.5rem;
+  transition: .5s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--main-color);
+}
+
+#menu-icon {
+  font-size: 4rem;
+  display: none;
+}
+
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 10rem 9% 2rem;
+}
+
+.heading {
+  font-size: 4.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.heading span {
+  color: var(--main-color);
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  border: .2rem solid var(--main-color);
+  background: var(--main-color);
+  border-radius: 4rem;
+  box-shadow: 0 0 1rem var(--main-color);
+  font-size: 1.6rem;
+  color: var(--bg-color);
+  font-weight: 500;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: transparent;
+  color: var(--white-color);
+  box-shadow: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    padding: 2rem 4%;
+  }
+
+  section {
+    padding: 10rem 4% 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #menu-icon {
+    display: block;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background: var(--bg-color);
+    border-top: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    text-align: center;
+    display: none;
+  }
+
+  nav.active {
+    display: block;
+  }
+
+  nav a {
+    display: block;
+    margin: 4rem 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 2rem;
+  padding: 5rem;
+}

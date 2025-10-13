@@ -1,0 +1,456 @@
+/* Shared styles for all CRUD manager components */
+
+.crud-manager {
+  padding: 3rem;
+}
+
+.manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.manager-header h2 {
+  font-size: 3rem;
+  color: var(--white-color);
+}
+
+.add-btn {
+  padding: 1.2rem 2.5rem;
+  background: var(--main-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.add-btn:hover {
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  color: var(--main-color);
+}
+
+.add-btn i {
+  font-size: 2rem;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+  gap: 2rem;
+}
+
+.item-card {
+  background: var(--second-bg-color);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  border: 0.2rem solid transparent;
+  transition: all 0.3s;
+}
+
+.item-card:hover {
+  border-color: var(--main-color);
+  transform: translateY(-0.5rem);
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.item-header h3 {
+  font-size: 2rem;
+  color: var(--white-color);
+  flex: 1;
+}
+
+.item-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.item-actions button {
+  padding: 0.8rem;
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  color: var(--main-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-actions button:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.item-actions button i {
+  font-size: 1.8rem;
+}
+
+.item-company,
+.item-institution,
+.item-issuer,
+.item-year,
+.item-date,
+.item-category {
+  font-size: 1.4rem;
+  color: var(--main-color);
+  margin-bottom: 0.8rem;
+}
+
+.item-description,
+.item-excerpt,
+.item-content-preview {
+  font-size: 1.5rem;
+  color: var(--white-color);
+  opacity: 0.8;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-tech,
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.tech-tag,
+.tag {
+  padding: 0.5rem 1.2rem;
+  background: rgba(255, 20, 147, 0.2);
+  color: var(--main-color);
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.item-image {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.item-icon {
+  font-size: 6rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+  display: block;
+  text-align: center;
+}
+
+.item-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.item-links a {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  color: var(--main-color);
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.item-links a:hover {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+.default-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.published-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(127, 255, 0, 0.2);
+  color: #7fff00;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.draft-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: var(--second-bg-color);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 70rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 3rem rgba(255, 20, 147, 0.3);
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+  font-size: 2.5rem;
+  color: var(--white-color);
+}
+
+.modal-header button {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--white-color);
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modal-header button:hover {
+  color: var(--main-color);
+  transform: rotate(90deg);
+}
+
+.modal-content form {
+  padding: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--white-color);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 1.2rem;
+  background: var(--bg-color);
+  border: 0.2rem solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+
+.form-group textarea {
+  min-height: 15rem;
+  resize: vertical;
+}
+
+.form-group input[type="file"] {
+  padding: 0.8rem;
+}
+
+.form-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 1rem;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  color: var(--white-color);
+}
+
+.cancel-btn:hover {
+  border-color: var(--white-color);
+}
+
+.save-btn {
+  background: var(--main-color);
+  border: 0.2rem solid var(--main-color);
+  color: var(--white-color);
+}
+
+.save-btn:hover {
+  background: transparent;
+  color: var(--main-color);
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 5rem;
+  font-size: 2rem;
+  color: var(--white-color);
+  opacity: 0.7;
+}
+
+.empty-state i {
+  font-size: 6rem;
+  color: var(--main-color);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* Profile Picture History */
+.profile-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.profile-pic-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.profile-pic-card img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+}
+
+.profile-pic-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: 2rem 1.5rem;
+  color: var(--white-color);
+}
+
+.profile-pic-overlay p {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.current-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--main-color);
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .crud-manager {
+    padding: 2rem;
+  }
+
+  .items-grid,
+  .profile-history-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    max-width: 100%;
+  }
+
+  .manager-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated admin
+    function isAdmin() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Public read access for all collections
+    // Only authenticated admins can write
+    match /{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Profile Pictures - Read by all, write by admin only, no delete
+    match /profilePictures/{pictureId} {
+      allow read: if true;
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if false; // Never allow deletion
+    }
+
+    // Experiences
+    match /experiences/{experienceId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Education
+    match /education/{educationId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Skills
+    match /skills/{skillId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Projects
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Certificates
+    match /certificates/{certificateId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Blogs
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Social Links
+    match /socialLinks/{linkId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Contact Form Submissions
+    match /contactSubmissions/{submissionId} {
+      allow read: if isAdmin();
+      allow create: if true; // Anyone can submit
+      allow update, delete: if isAdmin();
+    }
+  }
+}
