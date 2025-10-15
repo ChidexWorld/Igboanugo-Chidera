@@ -19,6 +19,11 @@
   padding-top: 12rem;
 }
 
+.home-page section#contact {
+  min-height: auto;
+  padding-bottom: 3rem;
+}
+
 .error-container {
   display: flex;
   flex-direction: column;

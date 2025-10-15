@@ -73,8 +73,7 @@ nav a.active {
 
 /* Sections */
 section {
-  min-height: 100vh;
-  padding: 8rem 9% 2rem;
+    padding: 8rem 9% 2rem;
 }
 
 section#contact {
