@@ -32,9 +32,28 @@
 .admin-content {
   flex: 1;
   margin-left: 28rem;
-  min-height: 100vh;
+  height: 100vh;
   background: var(--bg-color);
+  overflow-y: auto;
   overflow-x: hidden;
+  padding: 2rem;
+}
+
+.admin-content::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.admin-content::-webkit-scrollbar-track {
+  background: var(--second-bg-color);
+}
+
+.admin-content::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 1rem;
+}
+
+.admin-content::-webkit-scrollbar-thumb:hover {
+  background: #ff0080;
 }
 
 /* Responsive Design */

@@ -6,7 +6,7 @@ import {
   updateDocument,
   deleteDocument
 } from '../../services/firestore';
-import './CRUDManager.css';
+import '../../styles/components/admin/CRUDManager.css';
 
 const SkillsManager = () => {
   const [skills, setSkills] = useState([]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ROLES, BIO, DEFAULT_SOCIAL_LINKS, PERSONAL_INFO } from '../../utils/constants';
-import './HomeSection.css';
+import '../../styles/components/public/HomeSection.css';
 
 const HomeSection = ({ profilePictures = [], socialLinks = [] }) => {
   const mergedSocialLinks = [...DEFAULT_SOCIAL_LINKS, ...socialLinks.filter(link => !link.isDefault)]
@@ -11,8 +11,9 @@ const HomeSection = ({ profilePictures = [], socialLinks = [] }) => {
     : null;
 
   return (
-    <section id="home" className="home active">
-      <div className="home_details">
+    <section id="home" className="active">
+      <div className="home">
+        <div className="home_details">
         <h1>{PERSONAL_INFO.displayName}</h1>
         <h2>
           And I'm{' '}
@@ -55,10 +56,11 @@ const HomeSection = ({ profilePictures = [], socialLinks = [] }) => {
             {newestProfilePicture ? (
               <img src={newestProfilePicture.url} alt={PERSONAL_INFO.displayName} />
             ) : (
-              <img src="/default-profile.png" alt={PERSONAL_INFO.displayName} />
+              <img src="/assets/images/FB_IMG_1733362352755.png" alt={PERSONAL_INFO.displayName} />
             )}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

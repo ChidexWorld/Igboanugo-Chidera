@@ -10,7 +10,7 @@ import {
   getSocialLinks,
   getProfilePictures
 } from '../../services/firestore';
-import './Dashboard.css';
+import '../../styles/components/admin/Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();

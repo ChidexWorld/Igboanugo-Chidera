@@ -4,7 +4,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import Header from '../../components/public/Header';
 import Loader from '../../components/common/Loader';
-import './BlogDetail.css';
+import '../../styles/pages/public/BlogDetail.css';
 
 const BlogDetail = () => {
   const { slug } = useParams();

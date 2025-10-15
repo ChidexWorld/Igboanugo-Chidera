@@ -7,7 +7,7 @@ import {
   deleteDocument
 } from '../../services/firestore';
 import { uploadCertificate } from '../../services/storage';
-import './CRUDManager.css';
+import '../../styles/components/admin/CRUDManager.css';
 
 const CertificatesManager = () => {
   const [certificates, setCertificates] = useState([]);

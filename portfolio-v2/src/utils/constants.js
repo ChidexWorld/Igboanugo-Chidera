@@ -83,6 +83,24 @@ export const SERVICES = [
   }
 ];
 
+// Default Experience (Constant - Cannot be deleted)
+export const DEFAULT_EXPERIENCE = [
+  {
+    period: "June 2023 - Present",
+    position: "Full Stack Developer",
+    company: "Freelance",
+    description: "Developing and maintaining web applications for various clients using modern technologies like React, Node.js, and MongoDB. Successfully delivered scalable solutions that improved client business operations and user engagement.",
+    isDefault: true
+  },
+  {
+    period: "January 2022 - May 2023",
+    position: "Frontend Developer Intern",
+    company: "Tech Solutions Ltd",
+    description: "Worked on building responsive user interfaces using React and TypeScript. Collaborated with the design team to implement pixel-perfect designs and improved website performance by 40%.",
+    isDefault: true
+  }
+];
+
 // Default Education (Constant - Cannot be deleted)
 export const DEFAULT_EDUCATION = [
   {
@@ -108,6 +126,20 @@ export const DEFAULT_EDUCATION = [
   }
 ];
 
+// Default Skills (Constant - Cannot be deleted)
+export const DEFAULT_SKILLS = [
+  { name: "JavaScript", icon: "bx bxl-javascript", isDefault: true },
+  { name: "TypeScript", icon: "bx bxl-typescript", isDefault: true },
+  { name: "React", icon: "bx bxl-react", isDefault: true },
+  { name: "Node.js", icon: "bx bxl-nodejs", isDefault: true },
+  { name: "MongoDB", icon: "bx bxl-mongodb", isDefault: true },
+  { name: "Python", icon: "bx bxl-python", isDefault: true },
+  { name: "Git", icon: "bx bxl-git", isDefault: true },
+  { name: "HTML5", icon: "bx bxl-html5", isDefault: true },
+  { name: "CSS3", icon: "bx bxl-css3", isDefault: true },
+  { name: "Firebase", icon: "bx bxl-firebase", isDefault: true }
+];
+
 // Resume Section Titles
 export const RESUME_SECTIONS = {
   experience: {
@@ -130,6 +162,38 @@ export const RESUME_SECTIONS = {
 
 // Why Hire Me
 export const WHY_HIRE_ME = "I am a Software Engineer passionate about creating impactful applications that solve real-world problems and enhance user experiences. Here's an overview of my qualifications and experience.";
+
+// Default Projects (Constant - Cannot be deleted)
+export const DEFAULT_PROJECTS = [
+  {
+    title: "Portfolio Website",
+    description: "A modern, responsive portfolio website built with React and Firebase. Features include a dynamic admin dashboard, blog management, and contact form integration.",
+    technologies: ["React", "Firebase", "CSS3"],
+    images: [
+      "/assets/images/1.png",
+      "/assets/images/2.png",
+      "/assets/images/3.png",
+      "/assets/images/4.png"
+    ],
+    liveUrl: "https://yourportfolio.com",
+    githubUrl: "https://github.com/ChidexWorld/portfolio-v2",
+    isDefault: true
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "A full-stack e-commerce solution with product management, shopping cart, and secure payment integration. Built for scalability and optimal user experience.",
+    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+    images: [
+      "/assets/images/Untitled design.png",
+      "/assets/images/Untitled design (1).png",
+      "/assets/images/Untitled design (2).png",
+      "/assets/images/Untitled design (3).png"
+    ],
+    liveUrl: null,
+    githubUrl: "https://github.com/ChidexWorld",
+    isDefault: true
+  }
+];
 
 // Contact Section
 export const CONTACT_INFO = {

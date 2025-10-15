@@ -7,7 +7,7 @@ import {
   deleteDocument
 } from '../../services/firestore';
 import { uploadBlogImage } from '../../services/storage';
-import './CRUDManager.css';
+import '../../styles/components/admin/CRUDManager.css';
 
 const BlogsManager = () => {
   const [blogs, setBlogs] = useState([]);

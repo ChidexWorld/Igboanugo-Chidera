@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { RESUME_SECTIONS, DEFAULT_EDUCATION, PERSONAL_INFO, WHY_HIRE_ME } from '../../utils/constants';
-import './ResumeSection.css';
+import { RESUME_SECTIONS, DEFAULT_EDUCATION, DEFAULT_EXPERIENCE, DEFAULT_SKILLS, PERSONAL_INFO, WHY_HIRE_ME } from '../../utils/constants';
+import '../../styles/components/public/ResumeSection.css';
 
 const ResumeSection = ({ experiences = [], education = [], skills = [] }) => {
   const [activeTab, setActiveTab] = useState('experience');
 
+  const mergedExperiences = [...DEFAULT_EXPERIENCE, ...experiences.filter(exp => !exp.isDefault)]
+    .sort((a, b) => new Date(b.period.split(' - ')[0]) - new Date(a.period.split(' - ')[0]));
+
   const mergedEducation = [...DEFAULT_EDUCATION, ...education.filter(edu => !edu.isDefault)]
     .sort((a, b) => new Date(b.year.split(' - ')[0]) - new Date(a.year.split(' - ')[0]));
+
+  const mergedSkills = [...DEFAULT_SKILLS, ...skills.filter(skill => !skill.isDefault)];
 
   const tabs = [
     { id: 'experience', label: 'Experience' },
@@ -23,20 +28,14 @@ const ResumeSection = ({ experiences = [], education = [], skills = [] }) => {
             <h2 className="heading">{RESUME_SECTIONS.experience.title}</h2>
             <p className="desc">{RESUME_SECTIONS.experience.description}</p>
             <div className="resume_list">
-              {experiences.length > 0 ? (
-                experiences.map((exp, index) => (
-                  <div key={index} className="resume_item">
-                    <p className="year">{exp.period}</p>
-                    <h3>{exp.position}</h3>
-                    <p className="company">{exp.company}</p>
-                    <p>{exp.description}</p>
-                  </div>
-                ))
-              ) : (
-                <div className="resume_item">
-                  <p>No experience added yet.</p>
+              {mergedExperiences.map((exp, index) => (
+                <div key={index} className="resume_item">
+                  <p className="year">{exp.period}</p>
+                  <h3>{exp.position}</h3>
+                  <p className="company">{exp.company}</p>
+                  <p>{exp.description}</p>
                 </div>
-              )}
+              ))}
             </div>
           </div>
         );
@@ -65,18 +64,12 @@ const ResumeSection = ({ experiences = [], education = [], skills = [] }) => {
             <h2 className="heading">{RESUME_SECTIONS.skills.title}</h2>
             <p className="desc">{RESUME_SECTIONS.skills.description}</p>
             <div className="resume_list">
-              {skills.length > 0 ? (
-                skills.map((skill, index) => (
-                  <div key={index} className="resume_item">
-                    <i className={skill.icon}></i>
-                    <span>{skill.name}</span>
-                  </div>
-                ))
-              ) : (
-                <div className="resume_item">
-                  <p>No skills added yet.</p>
+              {mergedSkills.map((skill, index) => (
+                <div key={index} className="resume_item">
+                  <i className={skill.icon}></i>
+                  <span>{skill.name}</span>
                 </div>
-              )}
+              ))}
             </div>
           </div>
         );

@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import './PortfolioSection.css';
+import { DEFAULT_PROJECTS } from '../../utils/constants';
+import '../../styles/components/public/PortfolioSection.css';
 
 const PortfolioSection = ({ projects = [] }) => {
+  const mergedProjects = [...DEFAULT_PROJECTS, ...projects.filter(proj => !proj.isDefault)];
+
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrevImage = () => {
-    if (projects[activeProjectIndex]?.images?.length > 0) {
+    if (mergedProjects[activeProjectIndex]?.images?.length > 1) {
       setCurrentImageIndex((prev) =>
-        prev === 0 ? projects[activeProjectIndex].images.length - 1 : prev - 1
+        prev === 0 ? mergedProjects[activeProjectIndex].images.length - 1 : prev - 1
       );
     }
   };
 
   const handleNextImage = () => {
-    if (projects[activeProjectIndex]?.images?.length > 0) {
+    if (mergedProjects[activeProjectIndex]?.images?.length > 1) {
       setCurrentImageIndex((prev) =>
-        prev === projects[activeProjectIndex].images.length - 1 ? 0 : prev + 1
+        prev === mergedProjects[activeProjectIndex].images.length - 1 ? 0 : prev + 1
       );
     }
   };
@@ -26,22 +29,7 @@ const PortfolioSection = ({ projects = [] }) => {
     setCurrentImageIndex(0);
   };
 
-  if (projects.length === 0) {
-    return (
-      <section id="portfolio">
-        <h1 className="heading">
-          My <span>Portfolio</span>
-        </h1>
-        <div className="portfolio_container">
-          <p style={{ fontSize: '1.6rem', textAlign: 'center', gridColumn: '1/-1' }}>
-            No projects added yet.
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  const activeProject = projects[activeProjectIndex];
+  const activeProject = mergedProjects[activeProjectIndex];
 
   return (
     <section id="portfolio">
@@ -51,7 +39,7 @@ const PortfolioSection = ({ projects = [] }) => {
 
       <div className="portfolio_container">
         <div className="portfolio_box">
-          <div className={`portfolio_detail ${activeProjectIndex === 0 ? 'active' : ''}`}>
+          <div className="portfolio_detail active">
             <p className="numb">{String(activeProjectIndex + 1).padStart(2, '0')}</p>
             <h3>{activeProject.title}</h3>
             <p>{activeProject.description}</p>
@@ -74,7 +62,7 @@ const PortfolioSection = ({ projects = [] }) => {
           </div>
 
           <div className="project_indicators">
-            {projects.map((_, index) => (
+            {mergedProjects.map((_, index) => (
               <button
                 key={index}
                 className={`project_indicator ${index === activeProjectIndex ? 'active' : ''}`}
@@ -105,18 +93,16 @@ const PortfolioSection = ({ projects = [] }) => {
 
               <div className="navigation">
                 <button
-                  className={`arrow_left ${currentImageIndex === 0 ? 'disabled' : ''}`}
+                  className="arrow_left"
                   onClick={handlePrevImage}
-                  disabled={currentImageIndex === 0}
+                  disabled={activeProject.images.length <= 1}
                 >
                   <i className="bx bx-chevron-left"></i>
                 </button>
                 <button
-                  className={`arrow_right ${
-                    currentImageIndex === activeProject.images.length - 1 ? 'disabled' : ''
-                  }`}
+                  className="arrow_right"
                   onClick={handleNextImage}
-                  disabled={currentImageIndex === activeProject.images.length - 1}
+                  disabled={activeProject.images.length <= 1}
                 >
                   <i className="bx bx-chevron-right"></i>
                 </button>

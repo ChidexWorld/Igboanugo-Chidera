@@ -9,7 +9,8 @@ import CertificatesManager from '../../components/admin/CertificatesManager';
 import BlogsManager from '../../components/admin/BlogsManager';
 import ProfilePictureManager from '../../components/admin/ProfilePictureManager';
 import SocialLinksManager from '../../components/admin/SocialLinksManager';
-import './AdminDashboard.css';
+import ContactMessagesManager from '../../components/admin/ContactMessagesManager';
+import '../../styles/pages/admin/AdminDashboard.css';
 
 const AdminDashboard = () => {
   return (
@@ -26,6 +27,7 @@ const AdminDashboard = () => {
           <Route path="blogs" element={<BlogsManager />} />
           <Route path="profile-picture" element={<ProfilePictureManager />} />
           <Route path="social-links" element={<SocialLinksManager />} />
+          <Route path="messages" element={<ContactMessagesManager />} />
         </Routes>
       </main>
     </div>

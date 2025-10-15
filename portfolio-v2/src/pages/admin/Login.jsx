@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import './Login.css';
+import '../../styles/pages/admin/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { login, currentUser } = useAuth();
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      await login(email, setPassword);
+      await login(email, password);
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
@@ -59,15 +60,25 @@ const Login = () => {
               <i className="bx bx-lock"></i>
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-              disabled={loading}
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                required
+                disabled={loading}
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label="Toggle password visibility"
+              >
+                <i className={`bx ${showPassword ? 'bx-hide' : 'bx-show'}`}></i>
+              </button>
+            </div>
           </div>
 
           <button type="submit" className="login-btn" disabled={loading}>

@@ -4,7 +4,7 @@ import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import Header from '../../components/public/Header';
 import Loader from '../../components/common/Loader';
-import './BlogList.css';
+import '../../styles/pages/public/BlogList.css';
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);

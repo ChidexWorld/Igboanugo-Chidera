@@ -74,7 +74,13 @@ nav a.active {
 /* Sections */
 section {
   min-height: 100vh;
-  padding: 10rem 9% 2rem;
+  padding: 8rem 9% 2rem;
+}
+
+section#contact {
+  min-height: auto;
+  padding: 8rem 9% 1rem;
+  margin-bottom: 0;
 }
 
 .heading {
@@ -121,7 +127,12 @@ section {
   }
 
   section {
-    padding: 10rem 4% 2rem;
+    padding: 8rem 4% 2rem;
+  }
+
+  section#contact {
+    padding: 8rem 4% 1rem;
+    margin-bottom: 0;
   }
 }
 

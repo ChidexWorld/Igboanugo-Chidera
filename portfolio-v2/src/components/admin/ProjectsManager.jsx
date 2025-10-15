@@ -7,7 +7,7 @@ import {
   deleteDocument
 } from '../../services/firestore';
 import { uploadProjectImage } from '../../services/storage';
-import './CRUDManager.css';
+import '../../styles/components/admin/CRUDManager.css';
 
 const ProjectsManager = () => {
   const [projects, setProjects] = useState([]);
@@ -22,7 +22,7 @@ const ProjectsManager = () => {
     technologies: '',
     liveUrl: '',
     githubUrl: '',
-    imageUrl: ''
+    images: []
   });
 
   useEffect(() => {
@@ -41,32 +41,42 @@ const ProjectsManager = () => {
   };
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
 
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file');
-      return;
-    }
-
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error('Image size should be less than 5MB');
-      return;
+    // Validate file types and sizes
+    for (const file of files) {
+      if (!file.type.startsWith('image/')) {
+        toast.error(`${file.name} is not an image file`);
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error(`${file.name} exceeds 5MB size limit`);
+        return;
+      }
     }
 
     setUploading(true);
     try {
       const projectId = editingId || `project-${Date.now()}`;
-      const imageUrl = await uploadProjectImage(file, projectId);
-      setFormData({ ...formData, imageUrl });
-      toast.success('Image uploaded successfully');
+      const uploadPromises = files.map(file => uploadProjectImage(file, projectId));
+      const imageUrls = await Promise.all(uploadPromises);
+
+      setFormData({ ...formData, images: [...formData.images, ...imageUrls] });
+      toast.success(`${imageUrls.length} image(s) uploaded successfully`);
     } catch (error) {
-      toast.error('Failed to upload image');
+      toast.error('Failed to upload images');
     } finally {
       setUploading(false);
     }
+  };
+
+  const handleRemoveImage = (indexToRemove) => {
+    setFormData({
+      ...formData,
+      images: formData.images.filter((_, index) => index !== indexToRemove)
+    });
+    toast.info('Image removed');
   };
 
   const handleSubmit = async (e) => {
@@ -110,7 +120,7 @@ const ProjectsManager = () => {
         : project.technologies,
       liveUrl: project.liveUrl || '',
       githubUrl: project.githubUrl || '',
-      imageUrl: project.imageUrl || ''
+      images: project.images || (project.imageUrl ? [project.imageUrl] : [])
     });
     setShowModal(true);
   };
@@ -135,7 +145,7 @@ const ProjectsManager = () => {
       technologies: '',
       liveUrl: '',
       githubUrl: '',
-      imageUrl: ''
+      images: []
     });
     setEditingId(null);
   };
@@ -167,9 +177,11 @@ const ProjectsManager = () => {
         <div className="items-grid">
           {projects.map((project) => (
             <div key={project.id} className="item-card">
-              {project.imageUrl && (
+              {(project.images && project.images.length > 0) ? (
+                <img src={project.images[0]} alt={project.title} className="item-image" />
+              ) : project.imageUrl ? (
                 <img src={project.imageUrl} alt={project.title} className="item-image" />
-              )}
+              ) : null}
               <div className="item-header">
                 <h3>
                   {project.number}. {project.title}
@@ -267,26 +279,58 @@ const ProjectsManager = () => {
               </div>
 
               <div className="form-group">
-                <label>Project Image</label>
+                <label>Project Images (Multiple)</label>
                 <input
                   type="file"
                   accept="image/*"
+                  multiple
                   onChange={handleImageUpload}
                   disabled={uploading}
                 />
                 {uploading && <p style={{ fontSize: '1.4rem', color: 'var(--main-color)', marginTop: '0.5rem' }}>Uploading...</p>}
-                {formData.imageUrl && (
-                  <div style={{ marginTop: '1rem' }}>
-                    <img
-                      src={formData.imageUrl}
-                      alt="Project preview"
-                      style={{
-                        width: '100%',
-                        maxHeight: '20rem',
-                        objectFit: 'cover',
-                        borderRadius: '0.8rem'
-                      }}
-                    />
+                {formData.images && formData.images.length > 0 && (
+                  <div style={{
+                    marginTop: '1rem',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                    gap: '1rem'
+                  }}>
+                    {formData.images.map((imageUrl, index) => (
+                      <div key={index} style={{ position: 'relative' }}>
+                        <img
+                          src={imageUrl}
+                          alt={`Project preview ${index + 1}`}
+                          style={{
+                            width: '100%',
+                            height: '150px',
+                            objectFit: 'cover',
+                            borderRadius: '0.8rem'
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          style={{
+                            position: 'absolute',
+                            top: '0.5rem',
+                            right: '0.5rem',
+                            background: 'var(--main-color)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '50%',
+                            width: '2.5rem',
+                            height: '2.5rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '1.6rem'
+                          }}
+                        >
+                          <i className="bx bx-x"></i>
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>

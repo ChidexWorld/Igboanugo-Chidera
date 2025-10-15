@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { getAllDocuments } from '../../services/firestore';
 import { uploadProfilePicture } from '../../services/storage';
-import './CRUDManager.css';
+import '../../styles/components/admin/CRUDManager.css';
 
 const ProfilePictureManager = () => {
   const [profilePictures, setProfilePictures] = useState([]);

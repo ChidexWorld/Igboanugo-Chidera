@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from '../../components/public/Header';
 import HomeSection from '../../components/public/HomeSection';
 import ServicesSection from '../../components/public/ServicesSection';
@@ -6,78 +6,21 @@ import ResumeSection from '../../components/public/ResumeSection';
 import PortfolioSection from '../../components/public/PortfolioSection';
 import ContactSection from '../../components/public/ContactSection';
 import Loader from '../../components/common/Loader';
-import {
-  getExperiences,
-  getEducation,
-  getSkills,
-  getProjects,
-  getSocialLinks,
-  getProfilePictures
-} from '../../services/firestore';
-import './Home.css';
+import { usePortfolioData } from '../../hooks/usePortfolioData';
+import '../../styles/pages/public/Home.css';
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState({
-    experiences: [],
-    education: [],
-    skills: [],
-    projects: [],
-    socialLinks: [],
-    profilePictures: []
-  });
+  const { data, isLoading, isError, error } = usePortfolioData();
 
-  useEffect(() => {
-    const fetchAllData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const [
-          experiences,
-          education,
-          skills,
-          projects,
-          socialLinks,
-          profilePictures
-        ] = await Promise.all([
-          getExperiences(),
-          getEducation(),
-          getSkills(),
-          getProjects(),
-          getSocialLinks(),
-          getProfilePictures()
-        ]);
-
-        setData({
-          experiences,
-          education,
-          skills,
-          projects,
-          socialLinks,
-          profilePictures
-        });
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Failed to load portfolio data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAllData();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="error-container">
         <h2>Oops! Something went wrong</h2>
-        <p>{error}</p>
+        <p>{error?.message || 'Failed to load portfolio data. Please try again later.'}</p>
         <button onClick={() => window.location.reload()} className="btn">
           Retry
         </button>

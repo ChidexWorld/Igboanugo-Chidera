@@ -1,6 +1,6 @@
 import React from 'react';
 import { SERVICES } from '../../utils/constants';
-import './ServicesSection.css';
+import '../../styles/components/public/ServicesSection.css';
 
 const ServicesSection = () => {
   return (

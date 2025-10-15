@@ -1,0 +1,212 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 9%;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: box-shadow 0.3s ease;
+}
+
+header.active {
+  animation: show-header 0.8s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+header.scrolled {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+@keyframes show-header {
+  0% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--white-color);
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: var(--main-color);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav a {
+  font-size: 1.8rem;
+  color: var(--white-color);
+  font-weight: 500;
+  transition: 0.5s;
+  position: relative;
+  white-space: nowrap;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--main-color);
+}
+
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 0.2rem;
+  background: var(--main-color);
+}
+
+/* Separate Blog link */
+nav a[href="/blogs"],
+nav a[href*="/blog"] {
+  margin-left: 2rem;
+  padding: 0.8rem 2rem;
+  border: 0.2rem solid var(--main-color);
+  border-radius: 3rem;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+nav a[href="/blogs"]:hover,
+nav a[href*="/blog"]:hover,
+nav a[href="/blogs"].active,
+nav a[href*="/blog"].active {
+  background: var(--main-color);
+  color: var(--white-color);
+}
+
+nav a[href="/blogs"].active::after,
+nav a[href*="/blog"].active::after {
+  display: none;
+}
+
+#menu-icon {
+  font-size: 4rem;
+  display: none;
+  cursor: pointer;
+  color: var(--white-color);
+  transition: color 0.3s;
+}
+
+#menu-icon:hover {
+  color: var(--main-color);
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    padding: 2rem 4%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  nav a {
+    font-size: 1.6rem;
+  }
+
+  nav {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    padding: 1.5rem 4%;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    gap: 1.5rem;
+  }
+
+  nav a[href="/blogs"],
+  nav a[href*="/blog"] {
+    margin-left: 1rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #menu-icon {
+    display: block;
+  }
+
+  header {
+    padding: 1.5rem 3%;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 2rem 0;
+    background: var(--bg-color);
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  nav a {
+    display: block;
+    padding: 1.5rem 0;
+    margin: 0;
+    font-size: 1.8rem;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.05);
+  }
+
+  nav a:last-child {
+    border-bottom: none;
+  }
+
+  nav a.active::after {
+    display: none;
+  }
+
+  /* Blog link in mobile */
+  nav a[href="/blogs"],
+  nav a[href*="/blog"] {
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 3rem;
+    width: 80%;
+    max-width: 200px;
+    align-self: center;
+  }
+}
