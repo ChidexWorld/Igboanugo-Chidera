@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams,  Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import Header from '../../components/public/Header';
@@ -8,7 +8,7 @@ import '../../styles/pages/public/BlogDetail.css';
 
 const BlogDetail = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

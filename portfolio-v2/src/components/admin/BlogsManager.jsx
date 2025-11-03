@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import {
   getAllDocuments,
   addDocument,
   updateDocument,
-  deleteDocument
-} from '../../services/firestore';
-import { uploadBlogImage } from '../../services/storage';
-import '../../styles/components/admin/CRUDManager.css';
+  deleteDocument,
+} from "../../services/firestore";
+import { uploadBlogImage } from "../../services/cloudinaryUpload";
+import "../../styles/components/admin/CRUDManager.css";
 
 const BlogsManager = () => {
   const [blogs, setBlogs] = useState([]);
@@ -16,12 +16,12 @@ const BlogsManager = () => {
   const [editingId, setEditingId] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
-    title: '',
-    slug: '',
-    content: '',
-    excerpt: '',
-    coverImage: '',
-    published: false
+    title: "",
+    slug: "",
+    content: "",
+    excerpt: "",
+    coverImage: "",
+    published: false,
   });
   const [imageFile, setImageFile] = useState(null);
 
@@ -31,10 +31,11 @@ const BlogsManager = () => {
 
   const fetchBlogs = async () => {
     try {
-      const data = await getAllDocuments('blogs');
+      const data = await getAllDocuments("blogs");
       setBlogs(data);
     } catch (error) {
-      toast.error('Failed to fetch blogs');
+      toast.error("Failed to fetch blogs");
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -45,9 +46,9 @@ const BlogsManager = () => {
     return title
       .toLowerCase()
       .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
   };
 
   const handleTitleChange = (e) => {
@@ -55,7 +56,7 @@ const BlogsManager = () => {
     setFormData({
       ...formData,
       title,
-      slug: generateSlug(title)
+      slug: generateSlug(title),
     });
   };
 
@@ -75,30 +76,30 @@ const BlogsManager = () => {
       // Upload image if a new one is selected
       if (imageFile) {
         // Generate blogId for new blogs or use existing id for updates
-        const blogId = editingId || `blog_${Date.now()}`;
-        coverImageUrl = await uploadBlogImage(imageFile, blogId);
+        coverImageUrl = await uploadBlogImage(imageFile);
       }
 
       const blogData = {
         ...formData,
         coverImage: coverImageUrl,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       };
 
       if (editingId) {
-        await updateDocument('blogs', editingId, blogData);
-        toast.success('Blog updated successfully');
+        await updateDocument("blogs", editingId, blogData);
+        toast.success("Blog updated successfully");
       } else {
         blogData.createdAt = new Date().toISOString();
-        await addDocument('blogs', blogData);
-        toast.success('Blog added successfully');
+        await addDocument("blogs", blogData);
+        toast.success("Blog added successfully");
       }
 
       setShowModal(false);
       resetForm();
       fetchBlogs();
     } catch (error) {
-      toast.error('Failed to save blog');
+      toast.error("Failed to save blog");
+      console.log(error);
     } finally {
       setUploading(false);
     }
@@ -112,32 +113,33 @@ const BlogsManager = () => {
       content: blog.content,
       excerpt: blog.excerpt,
       coverImage: blog.coverImage,
-      published: blog.published
+      published: blog.published,
     });
     setImageFile(null);
     setShowModal(true);
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this blog?')) {
+    if (window.confirm("Are you sure you want to delete this blog?")) {
       try {
-        await deleteDocument('blogs', id);
-        toast.success('Blog deleted successfully');
+        await deleteDocument("blogs", id);
+        toast.success("Blog deleted successfully");
         fetchBlogs();
       } catch (error) {
-        toast.error('Failed to delete blog');
+        toast.error("Failed to delete blog");
+        console.log(error);
       }
     }
   };
 
   const resetForm = () => {
     setFormData({
-      title: '',
-      slug: '',
-      content: '',
-      excerpt: '',
-      coverImage: '',
-      published: false
+      title: "",
+      slug: "",
+      content: "",
+      excerpt: "",
+      coverImage: "",
+      published: false,
     });
     setImageFile(null);
     setEditingId(null);
@@ -207,7 +209,7 @@ const BlogsManager = () => {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h3>{editingId ? 'Edit Blog' : 'Add Blog'}</h3>
+              <h3>{editingId ? "Edit Blog" : "Add Blog"}</h3>
               <button onClick={() => setShowModal(false)}>
                 <i className="bx bx-x"></i>
               </button>
@@ -230,7 +232,9 @@ const BlogsManager = () => {
                 <input
                   type="text"
                   value={formData.slug}
-                  onChange={(e) => setFormData({...formData, slug: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, slug: e.target.value })
+                  }
                   placeholder="my-first-blog-post"
                   required
                 />
@@ -240,7 +244,9 @@ const BlogsManager = () => {
                 <label>Excerpt *</label>
                 <textarea
                   value={formData.excerpt}
-                  onChange={(e) => setFormData({...formData, excerpt: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, excerpt: e.target.value })
+                  }
                   placeholder="A brief summary of your blog post..."
                   rows="3"
                   required
@@ -251,7 +257,9 @@ const BlogsManager = () => {
                 <label>Content *</label>
                 <textarea
                   value={formData.content}
-                  onChange={(e) => setFormData({...formData, content: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, content: e.target.value })
+                  }
                   placeholder="Write your blog content here..."
                   rows="10"
                   required
@@ -266,15 +274,15 @@ const BlogsManager = () => {
                   onChange={handleImageChange}
                 />
                 {formData.coverImage && !imageFile && (
-                  <div style={{ marginTop: '1rem' }}>
+                  <div style={{ marginTop: "1rem" }}>
                     <img
                       src={formData.coverImage}
                       alt="Current cover"
                       style={{
-                        width: '100%',
-                        maxHeight: '20rem',
-                        objectFit: 'cover',
-                        borderRadius: '0.8rem'
+                        width: "100%",
+                        maxHeight: "20rem",
+                        objectFit: "cover",
+                        borderRadius: "0.8rem",
                       }}
                     />
                   </div>
@@ -286,17 +294,23 @@ const BlogsManager = () => {
                   type="checkbox"
                   id="published"
                   checked={formData.published}
-                  onChange={(e) => setFormData({...formData, published: e.target.checked})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, published: e.target.checked })
+                  }
                 />
                 <label htmlFor="published">Published</label>
               </div>
 
               <div className="modal-actions">
-                <button type="button" onClick={() => setShowModal(false)} className="cancel-btn">
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="cancel-btn"
+                >
                   Cancel
                 </button>
                 <button type="submit" className="save-btn" disabled={uploading}>
-                  {uploading ? 'Uploading...' : editingId ? 'Update' : 'Add'}
+                  {uploading ? "Uploading..." : editingId ? "Update" : "Add"}
                 </button>
               </div>
             </form>

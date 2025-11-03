@@ -110,6 +110,8 @@ Visit: http://localhost:5173
 - Routing with React Router
 - Loading states and error handling
 
+Note: Storage setup in Firebase is no longer required since images will use Cloudinary.
+
 ✅ **Admin Features:**
 - Login page (src/pages/admin/Login.jsx)
 - Protected routes
@@ -290,7 +292,7 @@ portfolio-v2/
 │   ├── services/
 │   │   ├── firebase.js ✅
 │   │   ├── firestore.js ✅
-│   │   └── storage.js ✅
+│   │   └── cloudinaryUpload.js ✅
 │   │
 │   └── utils/
 │       └── constants.js ✅

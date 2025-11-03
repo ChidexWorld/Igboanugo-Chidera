@@ -1,33 +1,52 @@
-PORTFOLIO V2 - QUICK START COMMANDS
+
+# PORTFOLIO V2 - QUICK START COMMANDS
+
 =====================================
 
-📁 NAVIGATE TO PROJECT:
+📁 **NAVIGATE TO PROJECT**
+
+```bash
 cd /home/chidex-world/Desktop/Chidex/Igboanugo-Chidera/portfolio-v2
+```
 
+---
 
-🔧 INSTALL DEPENDENCIES:
+🔧 **INSTALL DEPENDENCIES**
+
+```bash
 npm install
+```
 
-If you get errors, try:
+If you encounter errors, try:
+
+```bash
 npm install --legacy-peer-deps
+```
 
+---
 
-🔥 FIREBASE SETUP:
+🔥 **FIREBASE SETUP**
 
-1. Go to: https://console.firebase.google.com/
-2. Create new project: "portfolio-v2"
-3. Enable: Authentication > Email/Password
-4. Create: Firestore Database
-5. Enable: Storage
-6. Get config from: Project Settings > Your apps
-7. Create .env file with your Firebase config
+1. Go to: [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project: `"portfolio-v2"`
+3. Enable Authentication → **Email/Password**
+4. Create a Firestore Database
+5. Enable Storage
+6. Get your Firebase config from **Project Settings → Your apps**
+7. Create `.env` file with your Firebase config
 
+---
 
-📝 CREATE .ENV FILE:
+📝 **CREATE .ENV FILE**
+
+```bash
 cp .env.example .env
 nano .env
+```
 
-Add your Firebase config:
+Add your Firebase configuration:
+
+```
 VITE_FIREBASE_API_KEY=your_key_here
 VITE_FIREBASE_AUTH_DOMAIN=your_domain_here
 VITE_FIREBASE_PROJECT_ID=your_project_id_here
@@ -35,77 +54,127 @@ VITE_FIREBASE_STORAGE_BUCKET=your_bucket_here
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id_here
 VITE_FIREBASE_APP_ID=your_app_id_here
 
+# Optional: Cloudinary
+VITE_CLOUDINARY_CLOUD_NAME=your_cloud_name
+VITE_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
 
-🚀 DEPLOY FIREBASE RULES:
+# Optional: EmailJS
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+---
+
+🚀 **DEPLOY FIREBASE RULES**
+
+```bash
 npm install -g firebase-tools
 firebase login
 firebase init
 firebase deploy --only firestore:rules,storage:rules
+```
 
+---
 
-👤 CREATE ADMIN USER:
-Go to Firebase Console > Authentication > Add User
-Email: your-email@example.com
-Password: YourSecurePassword123!
+👤 **CREATE ADMIN USER**
+Go to Firebase Console → Authentication → Add User:
 
+* Email: `your-email@example.com`
+* Password: `YourSecurePassword123!`
 
-▶️  RUN DEVELOPMENT SERVER:
+---
+
+▶️ **RUN DEVELOPMENT SERVER**
+
+```bash
 npm run dev
+```
 
-Open: http://localhost:5173
+Open in browser: [http://localhost:5173](http://localhost:5173)
 
+---
 
-🔐 TEST LOGIN:
-Navigate to: http://localhost:5173/admin/login
-Login with your admin credentials
+🔐 **TEST LOGIN**
+Navigate to: [http://localhost:5173/admin/login](http://localhost:5173)
+Login using your admin credentials
 
+---
 
-📦 BUILD FOR PRODUCTION:
+📦 **BUILD FOR PRODUCTION**
+
+```bash
 npm run build
+```
 
+🌐 **DEPLOY TO FIREBASE HOSTING**
 
-🌐 DEPLOY TO FIREBASE HOSTING:
+```bash
 firebase deploy --only hosting
+```
 
+---
 
-📚 DOCUMENTATION FILES:
-1. README.md - Project overview
-2. GETTING_STARTED.md - 5-step setup guide
-3. IMPLEMENTATION_GUIDE.md - Component templates
-4. PROJECT_STRUCTURE.md - Architecture
-5. PROJECT_SUMMARY.md - What's built, what's needed
-6. CHECKLIST.md - Implementation checklist
+📚 **DOCUMENTATION FILES**
 
+1. `README.md` - Project overview
+2. `GETTING_STARTED.md` - 5-step setup guide
+3. `IMPLEMENTATION_GUIDE.md` - Component templates
+4. `PROJECT_STRUCTURE.md` - Architecture & Firebase collections
+5. `PROJECT_SUMMARY.md` - What's built, what's needed
+6. `CHECKLIST.md` - Implementation progress checklist
 
-⚡ QUICK REFERENCE:
-npm run dev      - Start dev server
-npm run build    - Build for production
-npm run preview  - Preview production build
-npm run lint     - Check code quality
+---
 
+⚡ **QUICK REFERENCE**
 
-🎯 WHAT TO BUILD NEXT:
-1. src/components/admin/Sidebar.jsx (template provided)
-2. src/components/admin/ExperienceManager.jsx (template provided)
-3. src/components/public/Header.jsx (copy from V1)
-4. src/components/public/HomeSection.jsx (copy from V1)
+```bash
+npm run dev      # Start dev server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Check code quality
+```
 
+---
 
-💡 TIPS:
-- Start with ONE admin manager component
-- Test thoroughly before moving to next
-- Copy your V1 styles section by section
-- Use templates from IMPLEMENTATION_GUIDE.md
-- Check CHECKLIST.md for progress tracking
+🎯 **WHAT TO BUILD NEXT**
 
+**Admin Components:**
 
-❓ NEED HELP?
-- Read GETTING_STARTED.md for detailed setup
-- Read IMPLEMENTATION_GUIDE.md for code examples
-- Check PROJECT_SUMMARY.md for overview
-- Firebase docs: https://firebase.google.com/docs
+1. `src/components/admin/Sidebar.jsx` (template provided)
+2. `src/components/admin/ExperienceManager.jsx` (template provided)
 
+**Public Components:**
+3. `src/components/public/Header.jsx` (copy from V1)
+4. `src/components/public/HomeSection.jsx` (copy from V1)
 
-🎊 YOU'RE READY TO BUILD!
-Everything is set up. Just follow the guides and start coding!
+**Optional Integrations:**
 
+* Cloudinary for profile/project images
+* EmailJS for contact form messages
+
+---
+
+💡 **TIPS**
+
+* Start with **ONE admin manager component**
+* Test thoroughly before moving to the next
+* Copy your V1 styles **section by section**
+* Use templates from `IMPLEMENTATION_GUIDE.md`
+* Check `CHECKLIST.md` for progress tracking
+
+---
+
+❓ **NEED HELP?**
+
+* `GETTING_STARTED.md` → Detailed setup
+* `IMPLEMENTATION_GUIDE.md` → Code examples
+* `PROJECT_SUMMARY.md` → Overview & priorities
+* Firebase docs: [https://firebase.google.com/docs](https://firebase.google.com/docs)
+* Cloudinary docs: [https://cloudinary.com/documentation](https://cloudinary.com/documentation)
+* EmailJS docs: [https://www.emailjs.com/docs/](https://www.emailjs.com/docs/)
+
+---
+
+🎊 **YOU'RE READY TO BUILD!**
+Everything is set up. Follow the guides and start coding! 🚀

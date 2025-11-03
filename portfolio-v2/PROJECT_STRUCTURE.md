@@ -48,7 +48,7 @@ portfolio-v2/
 │   ├── services/
 │   │   ├── firebase.js
 │   │   ├── firestore.js
-│   │   └── storage.js
+│   │   └── cloudinaryUpload.js
 │   │   utils/
 │   │   ├── constants.js
 │   │   └── helpers.js

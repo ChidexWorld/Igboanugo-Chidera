@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { getAllDocuments } from '../../services/firestore';
-import { uploadProfilePicture } from '../../services/storage';
-import '../../styles/components/admin/CRUDManager.css';
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { getAllDocuments } from "../../services/firestore";
+import { uploadProfilePicture } from "../../services/cloudinaryUpload";
+import "../../styles/components/admin/CRUDManager.css";
 
 const ProfilePictureManager = () => {
   const [profilePictures, setProfilePictures] = useState([]);
@@ -17,14 +17,15 @@ const ProfilePictureManager = () => {
 
   const fetchProfilePictures = async () => {
     try {
-      const data = await getAllDocuments('profilePictures');
+      const data = await getAllDocuments("profilePictures");
       // Sort by uploadedAt descending (newest first)
-      const sorted = data.sort((a, b) =>
-        new Date(b.uploadedAt) - new Date(a.uploadedAt)
+      const sorted = data.sort(
+        (a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt)
       );
       setProfilePictures(sorted);
     } catch (error) {
-      toast.error('Failed to fetch profile pictures');
+      toast.error("Failed to fetch profile pictures");
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -48,22 +49,23 @@ const ProfilePictureManager = () => {
     e.preventDefault();
 
     if (!imageFile) {
-      toast.error('Please select an image to upload');
+      toast.error("Please select an image to upload");
       return;
     }
 
     setUploading(true);
     try {
       await uploadProfilePicture(imageFile);
-      toast.success('Profile picture uploaded successfully');
+      toast.success("Profile picture uploaded successfully");
       setImageFile(null);
       setPreviewUrl(null);
       fetchProfilePictures();
 
       // Reset file input
-      document.getElementById('profile-pic-input').value = '';
+      document.getElementById("profile-pic-input").value = "";
     } catch (error) {
-      toast.error('Failed to upload profile picture');
+      toast.error("Failed to upload profile picture");
+      console.log(error);
     } finally {
       setUploading(false);
     }
@@ -71,12 +73,12 @@ const ProfilePictureManager = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -89,8 +91,8 @@ const ProfilePictureManager = () => {
       </div>
 
       {/* Upload Form */}
-      <div className="item-card" style={{ marginBottom: '3rem' }}>
-        <h3 style={{ marginBottom: '2rem', color: 'var(--white-color)' }}>
+      <div className="item-card" style={{ marginBottom: "3rem" }}>
+        <h3 style={{ marginBottom: "2rem", color: "var(--white-color)" }}>
           Upload New Profile Picture
         </h3>
         <form onSubmit={handleUpload}>
@@ -112,12 +114,12 @@ const ProfilePictureManager = () => {
                 src={previewUrl}
                 alt="Preview"
                 style={{
-                  width: '100%',
-                  maxWidth: '30rem',
-                  height: '30rem',
-                  objectFit: 'cover',
-                  borderRadius: '1rem',
-                  border: '0.2rem solid var(--main-color)'
+                  width: "100%",
+                  maxWidth: "30rem",
+                  height: "30rem",
+                  objectFit: "cover",
+                  borderRadius: "1rem",
+                  border: "0.2rem solid var(--main-color)",
                 }}
               />
             </div>
@@ -127,21 +129,35 @@ const ProfilePictureManager = () => {
             type="submit"
             className="add-btn"
             disabled={uploading}
-            style={{ marginTop: '1.5rem' }}
+            style={{ marginTop: "1.5rem" }}
           >
             <i className="bx bx-upload"></i>
-            {uploading ? 'Uploading...' : 'Upload Picture'}
+            {uploading ? "Uploading..." : "Upload Picture"}
           </button>
         </form>
       </div>
 
       {/* Profile Pictures History */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '2.5rem', color: 'var(--white-color)', marginBottom: '2rem' }}>
+      <div style={{ marginBottom: "2rem" }}>
+        <h3
+          style={{
+            fontSize: "2.5rem",
+            color: "var(--white-color)",
+            marginBottom: "2rem",
+          }}
+        >
           Profile Picture History
         </h3>
-        <p style={{ fontSize: '1.4rem', color: 'var(--white-color)', opacity: 0.7, marginBottom: '2rem' }}>
-          All uploaded profile pictures are stored here for history. The most recent is marked as current.
+        <p
+          style={{
+            fontSize: "1.4rem",
+            color: "var(--white-color)",
+            opacity: 0.7,
+            marginBottom: "2rem",
+          }}
+        >
+          All uploaded profile pictures are stored here for history. The most
+          recent is marked as current.
         </p>
       </div>
 
@@ -162,7 +178,7 @@ const ProfilePictureManager = () => {
                   )}
                 </p>
                 <p>{formatDate(picture.uploadedAt)}</p>
-                <p style={{ fontSize: '1.2rem', opacity: 0.7 }}>
+                <p style={{ fontSize: "1.2rem", opacity: 0.7 }}>
                   {picture.fileName}
                 </p>
               </div>
