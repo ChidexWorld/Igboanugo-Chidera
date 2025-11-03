@@ -66,9 +66,12 @@ export const getDocument = async (collectionName, docId) => {
   }
 };
 
-export const getAllDocuments = async (collectionName, orderByField = 'createdAt') => {
+export const getAllDocuments = async (collectionName, orderByField) => {
   try {
-    const q = query(collection(db, collectionName), orderBy(orderByField, 'desc'));
+      const field =
+        orderByField ||
+        (collectionName === "contactSubmissions" ? "timestamp" : "createdAt");
+    const q = query(collection(db, collectionName), orderBy(field, "desc"));
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.docs.map(doc => ({

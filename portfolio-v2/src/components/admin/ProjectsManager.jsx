@@ -6,7 +6,7 @@ import {
   updateDocument,
   deleteDocument
 } from '../../services/firestore';
-import { uploadProjectImage } from '../../services/storage';
+import { uploadProjectImage } from '../../services/cloudinaryUpload';
 import '../../styles/components/admin/CRUDManager.css';
 
 const ProjectsManager = () => {
@@ -35,6 +35,7 @@ const ProjectsManager = () => {
       setProjects(data);
     } catch (error) {
       toast.error('Failed to fetch projects');
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -66,6 +67,8 @@ const ProjectsManager = () => {
       toast.success(`${imageUrls.length} image(s) uploaded successfully`);
     } catch (error) {
       toast.error('Failed to upload images');
+            console.log(error);
+
     } finally {
       setUploading(false);
     }
@@ -106,6 +109,8 @@ const ProjectsManager = () => {
       fetchProjects();
     } catch (error) {
       toast.error('Failed to save project');
+            console.log(error);
+
     }
   };
 
@@ -133,6 +138,8 @@ const ProjectsManager = () => {
         fetchProjects();
       } catch (error) {
         toast.error('Failed to delete project');
+              console.log(error);
+
       }
     }
   };

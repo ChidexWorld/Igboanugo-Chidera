@@ -30,7 +30,7 @@ const HomeSection = ({ profilePictures = [], socialLinks = [] }) => {
         <p>{BIO.description}</p>
 
         <div className="btn_sci">
-          <a href="/resume.pdf" className="btn" download>
+          <a href="/assets/cv/IgboanugoChideraGoodness.pdf" className="btn" download>
             Download CV
           </a>
 
