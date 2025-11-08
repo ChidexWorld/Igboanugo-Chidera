@@ -27,7 +27,7 @@ const HomeSection = ({ profilePictures = [], socialLinks = [] }) => {
 
           <div className="btn_sci">
             <a
-              href="cv/Igboanugo_chidera_goodness.pdf"
+              href="/cv/Igboanugo_chidera_goodness.pdf"
               className="btn"
               download
             >
