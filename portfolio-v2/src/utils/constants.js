@@ -256,15 +256,15 @@ export const DEFAULT_PROJECTS = [
       "A modern, responsive portfolio website built with React and Firebase. Features include a dynamic admin dashboard, blog management, and contact form integration.",
     technologies: ["React", "Firebase", "CSS3"],
     images: [
-      "/src/assets/images/portfolio.png",
-      "/src/assets/images/portfolio2.png",
-      "/src/assets/images/portfolio3.png",
-      "/src/assets/images/portfolio4.png",
+      "/images/portfolio.png",
+      "/images/portfolio2.png",
+      "/images/portfolio3.png",
+      "/images/portfolio4.png",
     ],
-    liveUrl: "https://yourportfolio.com",
-    githubUrl: "https://github.com/ChidexWorld/portfolio-v2",
+    liveUrl: "https://chidexv2.vercel.app/",
+    githubUrl: "https://github.com/ChidexWorld/Igboanugo-Chidera",
     isDefault: false,
-  }
+  },
   // {
   //   title: "E-Commerce Platform",
   //   description:
