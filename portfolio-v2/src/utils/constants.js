@@ -8,7 +8,7 @@ export const PERSONAL_INFO = {
   address: "No 29, Niger Street, Fegge, Onitsha, Anambra State.",
   city: "Awka",
   nationality: "Nigerian",
-  dob: "19th April",
+  // dob: "19th April",
   gender: "Male",
   status: "Single",
   experience: "3+ Years",
