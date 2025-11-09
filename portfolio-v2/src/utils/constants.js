@@ -128,14 +128,14 @@ export const DEFAULT_EXPERIENCE = [
       "Built full-stack web applications using Next.js, Node.js, Express.js, and PostgreSQL. Designed RESTful APIs and optimized performance across frontend and backend layers.",
     isDefault: true,
   },
-  {
-    period: "June 2025 - August 2025",
-    position: "Frontend Developer (Contract)",
-    company: "Allotease, Awka, Nigeria",
-    description:
-      "Contributed to developing the company’s MVP, ensuring brand consistency and SEO optimization. Focused on responsive design and user experience across devices.",
-    isDefault: true,
-  },
+  // {
+  //   period: "June 2025 - August 2025",
+  //   position: "Frontend Developer (Contract)",
+  //   company: "Allotease, Awka, Nigeria",
+  //   description:
+  //     "Contributed to developing the company’s MVP, ensuring brand consistency and SEO optimization. Focused on responsive design and user experience across devices.",
+  //   isDefault: true,
+  // },
   {
     period: "May 2024 - October 2024",
     position: "Frontend Web Development Tutor (Intern)",
